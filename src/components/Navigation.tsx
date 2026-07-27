@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -24,7 +24,12 @@ const navItems = [
   ["Contact", "contact"],
 ];
 
-function Navigation({ parentToChild, modeChange }: any) {
+type NavigationProps = {
+  parentToChild: { mode: string };
+  modeChange: () => void;
+};
+
+function Navigation({ parentToChild, modeChange }: NavigationProps) {
   const { mode } = parentToChild;
   const isDark = mode === "dark";
 
@@ -38,11 +43,11 @@ function Navigation({ parentToChild, modeChange }: any) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(globalThis.scrollY > 40);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    globalThis.addEventListener("scroll", handleScroll);
+    return () => globalThis.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Highlight the nav item for whichever section is currently in view.
@@ -139,7 +144,7 @@ function Navigation({ parentToChild, modeChange }: any) {
         <Toolbar className="navigation-bar">
           <span
             className="nav-brand"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => globalThis.scrollTo({ top: 0, behavior: "smooth" })}
           >
             GLong
           </span>
