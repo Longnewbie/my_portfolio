@@ -12,7 +12,7 @@ function Contact() {
       <div className="contact-container">
         <div className="contact-wrapper">
           <div className="contact-header">
-            <h1>Let&apos;s Work Together</h1>
+            <h1 data-text="Let's Work Together">Let&apos;s Work Together</h1>
             <div className="header-underline"></div>
           </div>
 

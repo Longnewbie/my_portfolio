@@ -86,7 +86,7 @@ function Navigation({ parentToChild, modeChange }: NavigationProps) {
   const drawer = (
     <Box className="navigation-bar-responsive" sx={{ textAlign: "left" }}>
       <div className="mobile-menu-top">
-        <span className="mobile-menu-brand">GLong</span>
+        <span className="mobile-menu-brand">GL</span>
         <IconButton
           onClick={handleDrawerToggle}
           aria-label="close menu"
@@ -144,9 +144,10 @@ function Navigation({ parentToChild, modeChange }: NavigationProps) {
         <Toolbar className="navigation-bar">
           <span
             className="nav-brand"
+            data-text="GL"
             onClick={() => globalThis.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            GLong
+            GL
           </span>
 
           <Box

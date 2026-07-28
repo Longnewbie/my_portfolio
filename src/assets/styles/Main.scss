@@ -2,7 +2,87 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+.light-mode .about-section {
+    background-color: #ffffff;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.18) 1px, transparent 0),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.86) 0%, rgba(250, 245, 255, 0.8) 100%),
+        radial-gradient(ellipse at top left, rgba(99, 102, 241, 0.28), transparent 55%),
+        radial-gradient(ellipse at bottom right, rgba(217, 70, 239, 0.2), transparent 55%),
+        url("../images/bg-dark.png");
+    background-size: 28px 28px, cover, cover, cover, cover;
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    background-position: center, center, center, center, center;
+
+    &::before,
+    &::after {
+        opacity: 0.65;
+    }
+
+    .content {
+        .social_icons,
+        .mobile_social_icons {
+            color: #4b4b5a;
+
+            a {
+                transition: color 0.2s ease, transform 0.2s ease;
+
+                &:hover {
+                    color: #7c3aed;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+
+        h1 {
+            background: linear-gradient(
+                135deg,
+                #4f46e5 0%,
+                #7c3aed 45%,
+                #c026d3 75%,
+                #4f46e5 100%
+            );
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.3));
+        }
+
+        p {
+            background: linear-gradient(
+                135deg,
+                #4f46e5 0%,
+                #7c3aed 45%,
+                #c026d3 75%,
+                #4f46e5 100%
+            );
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.2));
+
+            &::after {
+                background: linear-gradient(90deg, #4f46e5, #c026d3);
+            }
+        }
+    }
+
+    .image-wrapper {
+        box-shadow: 0 0 25px rgba(124, 58, 237, 0.35),
+            0 0 45px rgba(217, 70, 239, 0.2);
+
+        &:hover {
+            box-shadow: 0 0 35px rgba(124, 58, 237, 0.5),
+                0 0 65px rgba(217, 70, 239, 0.3);
+        }
+    }
+}
+
 .about-section {
+    position: relative;
+    overflow: hidden;
     display: flex;
     gap: 30px;
     justify-content: flex-start;
@@ -10,11 +90,64 @@
     width: 100%;
     padding: 0px 15%;
     min-height: 700px;
-    background-image: url("../images/bg-dark.png");
+    background-image:
+        linear-gradient(160deg, rgba(5, 5, 12, 0.6) 0%, rgba(5, 5, 12, 0.8) 100%),
+        radial-gradient(ellipse at top left, rgba(142, 162, 255, 0.28), transparent 55%),
+        radial-gradient(ellipse at bottom right, rgba(255, 158, 203, 0.22), transparent 55%),
+        url("../images/bg-dark.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        border-radius: 50%;
+        filter: blur(90px);
+        pointer-events: none;
+        mix-blend-mode: screen;
+    }
+
+    &::before {
+        width: 480px;
+        height: 480px;
+        top: -140px;
+        left: -100px;
+        background: radial-gradient(circle, rgba(142, 162, 255, 0.5), transparent 70%);
+        animation: aurora-float-1 14s ease-in-out infinite;
+    }
+
+    &::after {
+        width: 420px;
+        height: 420px;
+        bottom: -160px;
+        right: -80px;
+        background: radial-gradient(circle, rgba(255, 158, 203, 0.42), transparent 70%);
+        animation: aurora-float-2 16s ease-in-out infinite;
+    }
+}
+
+@keyframes aurora-float-1 {
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(70px, 50px) scale(1.15);
+    }
+}
+
+@keyframes aurora-float-2 {
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-60px, -40px) scale(1.12);
+    }
 }
 
 .about-section .content {
@@ -37,23 +170,152 @@
     }
 
     p {
-        font-size: 1.5em;
+        position: relative;
+        display: inline-block;
+        font-size: 1.4em;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
         margin-block-start: 0px;
-        margin-block-end: 0px;
+        margin-block-end: 14px;
+        background: linear-gradient(
+            135deg,
+            #8ea2ff 0%,
+            #b388ff 45%,
+            #ff9ecb 75%,
+            #8ea2ff 100%
+        );
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: brand-gradient-shift 4.5s ease-in-out infinite;
+        filter: drop-shadow(0 0 8px rgba(142, 162, 255, 0.35));
+
+        &::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(
+                110deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.95) 45%,
+                rgba(255, 255, 255, 0.95) 50%,
+                transparent 65%
+            );
+            background-size: 260% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            pointer-events: none;
+            animation: brand-shine-sweep 5.5s ease-in-out infinite;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 2px;
+            bottom: -8px;
+            width: 42px;
+            height: 3px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #8ea2ff, #ff9ecb);
+        }
     }
 
     h1 {
+        position: relative;
+        display: inline-block;
         font-size: 5em;
+        font-weight: 800;
         margin-block-start: 0px;
         margin-block-end: 0px;
+        background: linear-gradient(
+            135deg,
+            #8ea2ff 0%,
+            #b388ff 45%,
+            #ff9ecb 75%,
+            #8ea2ff 100%
+        );
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: brand-gradient-shift 4.5s ease-in-out infinite;
+        filter: drop-shadow(0 0 14px rgba(142, 162, 255, 0.45));
+
+        &::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(
+                110deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.95) 45%,
+                rgba(255, 255, 255, 0.95) 50%,
+                transparent 65%
+            );
+            background-size: 260% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            pointer-events: none;
+            animation: brand-shine-sweep 5.5s ease-in-out infinite;
+        }
+    }
+}
+
+@keyframes brand-gradient-shift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes brand-shine-sweep {
+    0% {
+        background-position: 160% 0;
+    }
+    55%,
+    100% {
+        background-position: -60% 0;
     }
 }
 
 .about-section .image-wrapper {
+    position: relative;
     z-index: 2;
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(
+        135deg,
+        #8ea2ff 0%,
+        #b388ff 45%,
+        #ff9ecb 75%,
+        #8ea2ff 100%
+    );
+    background-size: 250% 250%;
+    animation: brand-gradient-shift 5s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(142, 162, 255, 0.45),
+        0 0 55px rgba(255, 158, 203, 0.25);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.35s ease;
+
     img {
-        width: 150px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         border-radius: 50%;
+        border: 3px solid rgba(8, 8, 14, 0.92);
     }
 }
 
@@ -149,7 +411,6 @@
 
         .about-section .image-wrapper {
             padding-left: 5%;
-            width: 100%;
         }
     }
 }
